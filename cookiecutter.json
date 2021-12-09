@@ -1,0 +1,12 @@
+{
+  "project_name": "provu_template",
+  "project_source": "src",
+  "main_folder": "main",
+  "venv_folder": "venv",
+  "tests_folder": "tests",
+  "docker_folder": "dockerfiles",
+  "migrations_folder": "migrations",
+  "application_layer_folder": "application_layer",
+  "domain_layer_folder": "domain_layer",
+  "presentation_layer_folder": "presentation_layer"
+}
