@@ -1,7 +1,7 @@
 import logging
 from distutils.util import strtobool
-from dotenv import load_dotenv
 from json import loads
+from dot
 from env_kills.assertions import EnvKills
 
 load_dotenv()
@@ -239,102 +239,16 @@ class TestingConfig(BaseConfig):
 
     BASE_URL_FRONT = 'http://localhost:4000'
 
-    # Config contract-manager
-    LENDICO_CONTRACT_API_URL = 'https://test-contract-manager.com'
-    LENDICO_CONTRACT_API_KEY = '1234567890'
-    LENDICO_CONTRACT_PARTNER = 'SOROCRED'
-
     # Config Communication
     LENDICO_COMMUNICATION_API_URL = 'https://test-communications.com'
     LENDICO_COMMUNICATION_API_KEY = '1234567890'
     EMAIL_FILES_PATH = "./tests/fixtures/templates"
 
-    # Config T2mio
-    T2MIO_SHORTENER_API_URL = 'https://test-t2mio.com'
-    T2MIO_SHORTENER_API_KEY = '123456789'
-    T2MIO_SHORTENER_API_SECRET = '123456789'
-    T2MIO_SHORTENER_API_PARAMS = loads(
-        '{"expires_after": 1, "domain_id": 211, "slash_tag": "login-sms-"}')
-
-    CDC_BACKOFFICE_API_URL = "backoffice-url.test.com"
     BASE_URL_FRONT_BACKOFFICE = 'http://localhost:4002'
 
-    ORDERHOOK_API_KEY = "test-key"
-
-    # Token CreditPolicy
-    TOKEN_CREDIT_POLICY = '123456'
-
-    # Token Maintenance
-    TOKEN_MAINTENANCE = '1234567890'
-
-    # Token Administration
-    TOKEN_ADMINISTRATION = '1234567890'
-
-    # IDWall
-    IDWALL_MATRIZ_RG = 'test_matriz_RG'
-    IDWALL_MATRIZ_CNH = 'test_matriz_CNH'
-    IDWALL_MATRIZ_DOCUMENTOSCOPIA = 'test_matriz_DOCUMENTOSCOPIA'
-    IDWALL_URI = 'https://test-idwall.com'
-    IDWALL_TOKEN = 'teste-token-idwall'
-
-    # Config Unico
-    UNICO_ISS = 'test_iss'
-    UNICO_TOKEN_URI = 'https://test-token-unico.com'
-    UNICO_API_KEY = 'api-key-unico'
-    UNICO_API_URI = 'https://test-unico.com'
-    UNICO_SECRET_TOKEN_WEBHOOK = 'test-token'
-
-    UNICO_MAX_ATTEMPTS_BIOMETRY = 3
-    UNICO_BIOMETRY_SCORE_NO_DOCUMENTOSCOPIA = 40
-
     TOKEN_EXPIRATION_HOURS = 24
-    DEFAULT_EMAIL_ACCOUNT = 'teste@teste.com'
-
-    # Engine
-    CREDIT_ANALYSIS_ENGINE_URI = 'https://test-engine.com'
-
-    # Flow Stages timeouts
-    BIOMETRY_WAITING_TIMEOUT_SECONDS = 60
-    BIOMETRY_ANALYSIS_TIMEOUT_SECONDS = 60
-
-    # Shopping Cart recovery communications
-    CART_RECOVERY_INTERVAL_1 = {"hours": 1}
-    CART_RECOVERY_INTERVAL_2 = {"hours": 5}
-    CART_RECOVERY_INTERVAL_3 = {"hours": 12}
-    CART_RECOVERY_INTERVAL_4 = {"hours": 12}
 
     LOCALSTACK_URL = None
-    PUBSUB_BACKEND = 'no_dep'
-
-    # Celery
-    BROKER_URL = 'sqs://'
-    QUEUE_NOTIFY_CCB_SIGNATURE_ON_MANAGER = 'test-notify-signature'
-    QUEUE_SEND_LENDING_TO_BACKOFFICE = 'test-send-lending-to-backoffice'
-    QUEUE_CHANGE_STAGE_TO_TIMEOUT = 'test-change-stage-to-timeout'
-
-    # Pricing - calculator
-    PRICING_CALCULATOR_URI = 'https://test-pricing-calculator.com'
-    PRICING_API_KEY = 'test.test'
-
-    # Nuvemshop
-    NUVEMSHOP_TOKEN_URI = 'https://www.test-nuvemshop.com.br'
-    NUVEMSHOP_API_URI = 'https://api.test-nuvemshop.com.br/v1'
-    NUVEMSHOP_REQUEST_NOTIFY_EMAILS_LIST = ['test1@email.com', 'test2@email.com']
-
-    # Nuvemshop Payment Provider Configurations
-    NUVEMSHOP_PROVIDER_DESCRIPTION = 'Parcele suas compras em até 24 vezes'
-    NUVEMSHOP_PROVIDER_LOGO_400 = 'https://test-logo.400.com'
-    NUVEMSHOP_PROVIDER_LOGO_160 = 'https://test-logo.160.com'
-    NUVEMSHOP_SUPPORT_URL = 'https://test-support.com'
-    NUVEMSHOP_CHECKOUT_JS_URL = 'https://test-checkout.com'
-    NUVEMSHOP_DAYS_TO_WITHDRAW_MONEY = 6
-    NUVEMSHOP_CHECKOUT_DESCRIPTION = 'Parcele suas compras em até 24 vezes'
-    NUVEMSHOP_CHECKOUT_LOGO = 'https://test-checkout.com'
-    NUVEMSHOP_CHECKOUT_NAME = 'Provu Parcelado'
-    NUVEMSHOP_CHECKOUT_ID = 'bpl_payment'
-
-    CDC_MANAGER_PUBLIC_URI = 'https://cdc-manager.test.com'
-    CDC_BACKOFFICE_PUBLIC_URI = 'https://cdc-backoffice.test.com'
 
 
 class StagingConfig(BaseConfig):
