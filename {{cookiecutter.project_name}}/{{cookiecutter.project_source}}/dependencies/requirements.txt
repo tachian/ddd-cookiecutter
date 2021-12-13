@@ -20,10 +20,15 @@ gevent
 lendico-flask==4.1.0
 json-logging>=1.2.11
 newrelic
-psycopg2
 py-money==0.4.0
 pycurl==7.43.0.5
 PyJWT==1.7.1
 python-dotenv==0.15.0
 openpyxl==3.0.4
 uWSGI
+flask-restplus==0.12.1
+{% if cookiecutter.database|lower == 'mysql' -%}
+MySQL-python==1.2.5
+{% else %}
+psycopg2==2.8.3
+{% endif %}
