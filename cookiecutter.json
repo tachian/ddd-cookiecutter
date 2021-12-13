@@ -3,7 +3,6 @@
     "project_name": "my-hello-world",
     "project_source": "src",
     "project_folder": "helloworld",
-    "main_folder": "main",
     "project_description": "My hello world project",
     "swagger_title": "Hello World API",
     "swagger_doc_name": "{{cookiecutter.swagger_title}}",
