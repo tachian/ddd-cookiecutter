@@ -1,0 +1,11 @@
+# Created by https://www.gitignore.io/api/python,emacs
+# Edit at https://www.gitignore.io/?templates=python,emacs
+
+#PyCharm
+*.idea
+
+# VSCode
+.vscode/
+
+# MAC OS
+.DS_Store

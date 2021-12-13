@@ -1,0 +1,29 @@
+--index-url https://nexus.lks.lendico.net.br/repository/lendico_python/simple
+--extra-index-url https://pypi.org/simple
+
+aenum==3.0.0
+APScheduler==3.6.3
+celery[sqs]==5.0.3
+click-plugins==1.1.1
+cryptography==3.4.7
+emailage-official==1.2.0
+env-kills==0.3.2
+Flask==2.0.1
+Flask-Cors==3.0.8
+Flask-HTTPAuth==3.3.0
+Flask-Login==0.4.1
+Flask-Migrate==2.5.2
+flask-restx==0.5.1
+Flask-SQLAlchemy==2.5.1
+freezegun>=1.1.0
+gevent
+lendico-flask==4.1.0
+json-logging>=1.2.11
+newrelic
+psycopg2
+py-money==0.4.0
+pycurl==7.43.0.5
+PyJWT==1.7.1
+python-dotenv==0.15.0
+openpyxl==3.0.4
+uWSGI
