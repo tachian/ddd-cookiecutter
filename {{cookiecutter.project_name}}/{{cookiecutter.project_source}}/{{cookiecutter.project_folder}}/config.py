@@ -27,5 +27,5 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
 
 
-class ProductionConfig(BaseConfig):
-    LOGS_LEVEL = int(os.environ.get('LOGS_LEVEL', logging.ERROR))
+# class ProductionConfig(BaseConfig):
+#     LOGS_LEVEL = int(os.environ.get('LOGS_LEVEL', logging.ERROR))
