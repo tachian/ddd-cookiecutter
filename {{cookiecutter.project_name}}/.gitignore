@@ -1,3 +1,4 @@
+
 # Created by https://www.gitignore.io/api/python,emacs
 # Edit at https://www.gitignore.io/?templates=python,emacs
 
@@ -161,6 +162,12 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.vscode/
+*.env
+*/.env
+.venv*
+.python-version
+*.DS_Store
 
 # Spyder project settings
 .spyderproject
@@ -190,16 +197,3 @@ dmypy.json
 index.html
 
 # End of https://www.gitignore.io/api/python,emacs
-
-# Created by https://www.gitignore.io/api/python,emacs
-# Edit at https://www.gitignore.io/?templates=python,emacs
-
-#PyCharm
-*.idea
-/idea
-
-# VSCode
-.vscode/
-
-# MAC OS
-.DS_Store
