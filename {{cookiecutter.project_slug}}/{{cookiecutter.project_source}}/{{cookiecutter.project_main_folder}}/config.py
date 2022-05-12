@@ -16,7 +16,11 @@ class BaseConfig(object):
     DEPLOY_ENV = env_cfg.deploy_env(default='Development')
     LOGS_LEVEL = logging.INFO
     RESTPLUS_VALIDATE = True
+    {% if cookiecutter.database|lower == 'mysql' -%}
     SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
+    {% else %}
+    SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
+    {% endif %}
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
@@ -24,7 +28,11 @@ class TestingConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     LOGS_LEVEL = logging.CRITICAL
+    {% if cookiecutter.database|lower == 'mysql' -%}
+    SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
+    {% else %}
     SQLALCHEMY_DATABASE_URI = BaseConfig.env_cfg.database_uri_test(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}_test")
+    {% endif %}
 
 
 class StagingConfig(BaseConfig):
