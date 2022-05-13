@@ -4,15 +4,15 @@
 
 ## RoadMap to UP:
 
+{%- if cookiecutter.database|lower != 'nosql' -%}
  + Install {{cookiecutter.database}} in your local machine or use a docker image
     + In {{cookiecutter.database}} execute:
-        {% if cookiecutter.database|lower != 'nosql' -%}
         + `Create databases "{{cookiecutter.project_slug}}";`
         + `Create databases "{{cookiecutter.project_slug}}_test";`
-        {%- endif %}
-        {% if cookiecutter.database|lower == 'postgres' -%}
+        {%- if cookiecutter.database|lower == 'postgres' -%}
         + `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`
         {%- endif %}
+{%- endif %}
 
  + Dependencies
    `sudo apt install libcurl4-openssl-dev libssl-dev`
@@ -32,12 +32,12 @@
  + Set environment variable:
     + DEPLOY_ENV=<environment where App will run>
     + LOGS_LEVEL=<Level of logs - Used on production environment>
-    {% if cookiecutter.database|lower != 'nosql' -%}
+    {%- if cookiecutter.database|lower != 'nosql' -%}
     + DATABASE_URI={{cookiecutter.database}}://<user>:<password>@localhost:5432/<database>
     + DATABASE_URI_TEST={{cookiecutter.database}}://<user>:<password>@localhost:5432/<database>_test
     {%- endif %}
 
- {% if cookiecutter.database|lower != 'nosql' -%}
+ {%- if cookiecutter.database|lower != 'nosql' -%}
  + Execute (inside {{cookiecutter.project_source}} dir)
     + `flask db migrate` To generate database revision files
     + `flask db upgrade` To apply revision files

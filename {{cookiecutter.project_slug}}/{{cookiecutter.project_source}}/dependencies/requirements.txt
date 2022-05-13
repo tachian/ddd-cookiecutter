@@ -13,12 +13,10 @@ Flask-Cors==3.0.8
 Flask-HTTPAuth==3.3.0
 Flask-Login==0.4.1
 {% if cookiecutter.database|lower != 'nosql' -%}
-Flask-Migrate==2.7.0
-{%- endif %}
+Flask-Migrate==2.7.0 {%- endif %}
 flask-restx==0.5.1
 {% if cookiecutter.database|lower != 'nosql' -%}
-Flask-SQLAlchemy==2.5.1
-{%- endif %}
+Flask-SQLAlchemy==2.5.1 {%- endif %}
 freezegun>=1.1.0
 gevent
 lendico-flask==4.2.10
@@ -32,5 +30,4 @@ openpyxl==3.0.4
 {% if cookiecutter.database|lower == 'mysql' -%}
 MySQL-python==1.2.5
 {% elif cookiecutter.database|lower == 'postgres' -%}
-psycopg2==2.8.3
-{%- endif %}
+psycopg2==2.8.3{%- endif %}

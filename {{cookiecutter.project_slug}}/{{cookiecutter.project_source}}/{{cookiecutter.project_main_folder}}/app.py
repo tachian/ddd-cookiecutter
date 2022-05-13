@@ -1,7 +1,6 @@
 import os
 import sys
 import logging
-
 import click
 
 import json_logging
@@ -9,16 +8,12 @@ from flask import Flask
 from flask_cors import CORS
 {% if cookiecutter.database|lower != 'nosql' -%}
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-{%- endif %}
-
+from flask_migrate import Migrate {%- endif %}
 from lutils.api_errors import install_error_handlers
 from lutils.services.contract import LendicoContract
 from lutils.services.communication import LendicoCommunication
 {% if cookiecutter.database|lower != 'nosql' -%}
-from sqlalchemy import MetaData
-{%- endif %}
-
+from sqlalchemy import MetaData {%- endif %}
 
 ENV = os.environ.get('DEPLOY_ENV', 'Development')
 
@@ -31,9 +26,8 @@ convention = {
 }
 
 metadata = MetaData(naming_convention=convention)
-db = SQLAlchemy(metadata=metadata)
+db = SQLAlchemy(metadata=metadata) {%- endif %}
 
-{%- endif %}
 
 def create_app(deploy_env: str = ENV) -> Flask:
     app = Flask(__name__)
@@ -47,10 +41,8 @@ def create_app(deploy_env: str = ENV) -> Flask:
 
     {% if cookiecutter.database|lower != 'nosql' -%}
     db.init_app(app)
+    Migrate(app, db) {%- endif%}
 
-    Migrate(app, db)
-    
-    {%- endif %}
     return app
 
 
@@ -66,7 +58,6 @@ def __register_blueprints_and_error_handling(app: Flask):
 
 def __configure_logger(app: Flask):
     if not json_logging.ENABLE_JSON_LOGGING:
-        "Prevent to call json_logging.init_flask() more than once."
         json_logging.ENABLE_JSON_LOGGING = True
         json_logging.init_flask()
         json_logging.init_request_instrument(app)
