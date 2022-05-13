@@ -6,11 +6,13 @@
 
  + Install {{cookiecutter.database}} in your local machine or use a docker image
     + In {{cookiecutter.database}} execute:
+        {% if cookiecutter.database|lower != 'nosql' -%}
         + `Create databases "{{cookiecutter.project_slug}}";`
         + `Create databases "{{cookiecutter.project_slug}}_test";`
-        {% if cookiecutter.database|lower == 'postgres'-%}
+        {%- endif %}
+        {% if cookiecutter.database|lower == 'postgres' -%}
         + `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`
-        {% endif %}
+        {%- endif %}
 
  + Dependencies
    `sudo apt install libcurl4-openssl-dev libssl-dev`
@@ -20,24 +22,28 @@
     + `your BitBucket count`
 
  + Clone repository
-    + `git clone {{cookiecuttter.project_repository}}`
+    + `git clone {{cookiecutter.project_repository}}`
 
  + Create and activate "virtualenv"
 
  + Install "requirements":
-    + `(pip install -r {{cookiecuttter.project_source}}/requirements-dev.txt)`
+    + `(pip install -r {{cookiecutter.project_source}}/requirements-dev.txt)`
 
  + Set environment variable:
     + DEPLOY_ENV=<environment where App will run>
     + LOGS_LEVEL=<Level of logs - Used on production environment>
+    {% if cookiecutter.database|lower != 'nosql' -%}
     + DATABASE_URI={{cookiecutter.database}}://<user>:<password>@localhost:5432/<database>
     + DATABASE_URI_TEST={{cookiecutter.database}}://<user>:<password>@localhost:5432/<database>_test
+    {%- endif %}
 
- + Execute (inside {{cookiecuttter.project_source}} dir)
+ {% if cookiecutter.database|lower != 'nosql' -%}
+ + Execute (inside {{cookiecutter.project_source}} dir)
     + `flask db migrate` To generate database revision files
     + `flask db upgrade` To apply revision files
+ {%- endif %}
 
- + Start server (inside {{cookiecuttter.project_source}} dir)
+ + Start server (inside {{cookiecutter.project_source}} dir)
     + `flask run`
 
  + HEALTH endpoints
@@ -45,12 +51,12 @@
     + /api/docs/swagger: IF API is working, must show SWAGGER page
 
 ## Commands
- + Reset Database (inside {{cookiecuttter.project_source}} dir)
+ + Reset Database (inside {{cookiecutter.project_source}} dir)
 	+ `flask drop-create-tables`
 
 ## Generate the Docker image
 
-Inside {{cookiecutter.project_source}} execute `docker build . -t {{cookiecutter.project_slug}}:<tage>`
+Inside {{cookiecutter.project_source}} execute `docker build . -t {{cookiecutter.project_slug}}:<tag>`
 
 A merge to dev or qa branchs will also build an image automatically on Jenkins and push it to AWS ECR
 

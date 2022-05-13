@@ -18,9 +18,9 @@ class BaseConfig(object):
     RESTPLUS_VALIDATE = True
     {% if cookiecutter.database|lower == 'mysql' -%}
     SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
-    {% else %}
+    {% elif cookiecutter.database|lower == 'postgres' -%}
     SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
-    {% endif %}
+    {%- endif %}
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
@@ -30,9 +30,9 @@ class TestingConfig(BaseConfig):
     LOGS_LEVEL = logging.CRITICAL
     {% if cookiecutter.database|lower == 'mysql' -%}
     SQLALCHEMY_DATABASE_URI = BaseConfig.env_cfg.database_uri_test(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
-    {% else %}
+    {% elif cookiecutter.database|lower == 'postgres' -%}
     SQLALCHEMY_DATABASE_URI = BaseConfig.env_cfg.database_uri_test(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}_test")
-    {% endif %}
+    {%- endif %}
 
 
 class StagingConfig(BaseConfig):

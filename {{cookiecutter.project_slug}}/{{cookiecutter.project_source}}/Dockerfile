@@ -1,7 +1,7 @@
 FROM 178164760726.dkr.ecr.us-east-1.amazonaws.com/lendico.python3.9-base:v0.1.34 as base
 
 # LABELS
-LABEL maintainer="{{project_mantainer}}"
+LABEL maintainer="{{cookiecutter.project_mantainer}}"
 LABEL slack="squad-titan"
 LABEL application="{{cookiecutter.project_slug}}"
 LABEL repository="{{cookiecutter.project_repository}}"

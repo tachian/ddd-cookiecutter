@@ -7,14 +7,22 @@ import click
 import json_logging
 from flask import Flask
 from flask_cors import CORS
+{% if cookiecutter.database|lower != 'nosql' -%}
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+{%- endif %}
 
 from lutils.api_errors import install_error_handlers
 from lutils.services.contract import LendicoContract
 from lutils.services.communication import LendicoCommunication
+{% if cookiecutter.database|lower != 'nosql' -%}
 from sqlalchemy import MetaData
+{%- endif %}
 
+
+ENV = os.environ.get('DEPLOY_ENV', 'Development')
+
+{% if cookiecutter.database|lower != 'nosql' -%}
 convention = {
     "ix": "ix_%(column_0_label)s",
     "fk": "%(table_name)s_%(column_0_name)s_fkey",
@@ -23,9 +31,9 @@ convention = {
 }
 
 metadata = MetaData(naming_convention=convention)
-ENV = os.environ.get('DEPLOY_ENV', 'Development')
 db = SQLAlchemy(metadata=metadata)
 
+{%- endif %}
 
 def create_app(deploy_env: str = ENV) -> Flask:
     app = Flask(__name__)
@@ -37,10 +45,12 @@ def create_app(deploy_env: str = ENV) -> Flask:
     __register_commands(app)
     __configure_lendico_services(app)
 
+    {% if cookiecutter.database|lower != 'nosql' -%}
     db.init_app(app)
 
     Migrate(app, db)
-
+    
+    {%- endif %}
     return app
 
 
