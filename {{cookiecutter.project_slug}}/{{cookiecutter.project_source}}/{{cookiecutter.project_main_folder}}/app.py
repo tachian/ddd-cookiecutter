@@ -13,10 +13,18 @@ from flask_migrate import Migrate
 from lutils.api_errors import install_error_handlers
 from lutils.services.contract import LendicoContract
 from lutils.services.communication import LendicoCommunication
+from sqlalchemy import MetaData
 
+convention = {
+    "ix": "ix_%(column_0_label)s",
+    "fk": "%(table_name)s_%(column_0_name)s_fkey",
+    "pk": "%(table_name)s_pkey",
+    "uq": "%(table_name)s_%(column_0_name)s_key"
+}
 
+metadata = MetaData(naming_convention=convention)
 ENV = os.environ.get('DEPLOY_ENV', 'Development')
-db = SQLAlchemy()
+db = SQLAlchemy(metadata=metadata)
 
 
 def create_app(deploy_env: str = ENV) -> Flask:
