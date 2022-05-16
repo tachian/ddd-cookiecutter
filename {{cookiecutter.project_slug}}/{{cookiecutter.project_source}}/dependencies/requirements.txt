@@ -2,8 +2,10 @@
 --extra-index-url https://pypi.org/simple
 
 aenum==3.0.0
-APScheduler==3.6.3
-celery[sqs]==5.0.3
+{% if cookiecutter.create_clock == 'y' -%}
+APScheduler==3.6.3 {%- endif %}
+{% if cookiecutter.create_celery_tasks == 'y' -%}
+celery[sqs]==5.0.3 {%- endif %}
 click-plugins==1.1.1
 cryptography==3.4.7
 emailage-official==1.2.0

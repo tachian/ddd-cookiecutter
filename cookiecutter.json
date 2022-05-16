@@ -12,5 +12,7 @@
     "swagger_description": "{{cookiecutter.swagger_title}} endpoints",
     "health_message": "{{cookiecutter.project_name}} API HealthCheck",
     "env_vars_namespace": "PROVU_{{ cookiecutter.project_name.upper().replace(' ', '_').replace('-', '_') }}",
-    "database": ["Postgres", "MySQL", "NoSQL"]
+    "database": ["Postgres", "MySQL", "NoSQL"],
+    "create_clock": ["y", "n"],
+    "create_celery_tasks": ["y", "n"]
   }
