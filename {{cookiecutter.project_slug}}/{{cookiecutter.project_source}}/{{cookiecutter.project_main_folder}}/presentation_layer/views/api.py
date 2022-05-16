@@ -27,7 +27,7 @@ api = Api(blueprint,
 
 ns = api.namespace('', description='{{cookiecutter.swagger_description}}')
 
-@ns.route('/', doc=False)
+@ns.route('/', '/healthz', doc=False)
 class Index(Resource):
     def get(self):
         return dict(
