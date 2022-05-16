@@ -10,12 +10,16 @@ app = create_app()
 
 scheduler = BlockingScheduler(timezone='America/Sao_Paulo')
 
+aps_logger = logging.getLogger('apscheduler.executors.default')
+aps_logger.setLevel(app.config['LOGS_LEVEL'])
+aps_logger.addHandler(logging.StreamHandler(sys.stdout))
 logger = logging.getLogger("{{cookiecutter.project_slug}}."+__name__)
 
 
 @scheduler.scheduled_job(trigger='cron', minute='*')
 def example_scheduled_job():
-    pass
+    with app.app_context():
+        logger.info("Example job executed")
 
 
 if __name__ == '__main__':

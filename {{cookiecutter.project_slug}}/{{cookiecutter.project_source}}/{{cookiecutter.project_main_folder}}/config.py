@@ -3,6 +3,7 @@ import os
 
 from dotenv import load_dotenv
 from env_kills.assertions import EnvKills
+import json
 
 load_dotenv()
 
@@ -22,6 +23,13 @@ class BaseConfig(object):
     {% elif cookiecutter.database|lower == 'postgres' -%}
     SQLALCHEMY_DATABASE_URI = env_cfg.database_uri(default="postgresql://runner:@localhost:5432/{{cookiecutter.project_slug.replace('-', '_')}}")
     SQLALCHEMY_TRACK_MODIFICATIONS = True {%- endif %}
+
+    {% if cookiecutter.create_celery_tasks == 'y' -%}
+    # Celery
+    BROKER_URL = env_cfg.broker_url(default='sqs://')
+    BROKER_TRANSPORT_OPTIONS = json.loads(
+        env_cfg.broker_transport_options(default='{}'))
+    QUEUE_EXAMPLE = env_cfg.queue_example(default='queue_example') {%- endif %}
 
 
 class TestingConfig(BaseConfig):

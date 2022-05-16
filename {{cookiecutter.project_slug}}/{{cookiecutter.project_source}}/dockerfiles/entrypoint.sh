@@ -23,7 +23,7 @@ Commands:
 case "$1" in
   {% if cookiecutter.create_celery_tasks == 'y' -%}
   worker)
-    newrelic-admin run-program celery -A cdc.app:celery_app worker -Q "$2" --loglevel INFO --concurrency=1 -E
+    newrelic-admin run-program celery -A {{cookiecutter.project_main_folder}}.app:celery_app worker -Q "$2" --loglevel INFO --concurrency=1 -E
     ;; {%- endif %}
   {% if cookiecutter.create_clock == 'y' -%}
   clock)

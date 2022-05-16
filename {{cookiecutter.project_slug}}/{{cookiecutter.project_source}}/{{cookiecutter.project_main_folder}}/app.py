@@ -15,6 +15,10 @@ from lutils.services.communication import LendicoCommunication
 {% if cookiecutter.database|lower != 'nosql' -%}
 from sqlalchemy import MetaData {%- endif %}
 
+{% if cookiecutter.create_celery_tasks == 'y' -%}
+from {{cookiecutter.project_main_folder}}.celery_config import celery {%- endif %}
+
+
 ENV = os.environ.get('DEPLOY_ENV', 'Development')
 
 {% if cookiecutter.database|lower != 'nosql' -%}
@@ -43,8 +47,10 @@ def create_app(deploy_env: str = ENV) -> Flask:
     db.init_app(app)
     Migrate(app, db) {%- endif%}
 
-    return app
+    {% if cookiecutter.create_celery_tasks == 'y' -%}
+    celery.init_app(app) {%- endif %}
 
+    return app
 
 def __register_blueprints_and_error_handling(app: Flask):
     from {{cookiecutter.project_main_folder}}.presentation_layer.views.api import blueprint
@@ -58,13 +64,12 @@ def __register_blueprints_and_error_handling(app: Flask):
 
 def __configure_logger(app: Flask):
     if not json_logging.ENABLE_JSON_LOGGING:
-        json_logging.ENABLE_JSON_LOGGING = True
-        json_logging.init_flask()
+        json_logging.init_flask(enable_json=True)
         json_logging.init_request_instrument(app)
 
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(app.config["LOGS_LEVEL"])
-    app.logger.addHandler(ch)
+    logger = logging.getLogger("{{cookiecutter.project_slug}}")
+    logger.setLevel(app.config["LOGS_LEVEL"])
+    logger.addHandler(logging.StreamHandler(sys.stdout))
 
 
 def __register_commands(app):
@@ -75,3 +80,10 @@ def __register_commands(app):
 
 def __configure_lendico_services(app: Flask):
     pass
+
+{% if cookiecutter.create_celery_tasks == 'y' -%}
+def create_celery_app():
+    create_app()
+    return celery
+
+celery_app = create_celery_app() {%- endif %}
