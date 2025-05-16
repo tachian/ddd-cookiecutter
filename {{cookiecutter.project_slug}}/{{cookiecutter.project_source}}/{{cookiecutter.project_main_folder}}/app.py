@@ -9,9 +9,7 @@ from flask_cors import CORS
 {% if cookiecutter.database|lower != 'nosql' -%}
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate {%- endif %}
-from lutils.api_errors import install_error_handlers
-from lutils.services.contract import LendicoContract
-from lutils.services.communication import LendicoCommunication
+from main.presentation_layer import install_error_handlers
 {% if cookiecutter.database|lower != 'nosql' -%}
 from sqlalchemy import MetaData {%- endif %}
 
@@ -41,7 +39,6 @@ def create_app(deploy_env: str = ENV) -> Flask:
     __register_blueprints_and_error_handling(app)
     __configure_logger(app)
     __register_commands(app)
-    __configure_lendico_services(app)
 
     {% if cookiecutter.database|lower != 'nosql' -%}
     db.init_app(app)
@@ -77,9 +74,6 @@ def __register_commands(app):
 
     app.cli.command("drop-create-tables")(drop_create_tables)
 
-
-def __configure_lendico_services(app: Flask):
-    pass
 
 {% if cookiecutter.create_celery_tasks == 'y' -%}
 def create_celery_app():

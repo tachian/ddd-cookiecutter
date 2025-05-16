@@ -1,18 +1,18 @@
 
   {
-    "project_name": "CDC New-App",
+    "project_name": "New-App",
     "project_slug": "{{ cookiecutter.project_name | slugify }}",
-    "project_repository": "bitbucket.org:lendicobrasil/{{cookiecutter.project_slug}}.git",
-    "project_mantainer": "Lendico <contato@lendico.com.br>",
+    "project_repository": "git@github.com:tachian/{{cookiecutter.project_slug}}.git",
+    "project_mantainer": "André Tachian <altachian@gmail.com>",
     "project_source": "src",
-    "project_main_folder": "cdc",
+    "project_main_folder": "main",
     "project_description": "My hello world project",
     "swagger_title": "{{cookiecutter.project_name}} API",
     "swagger_doc_name": "{{cookiecutter.swagger_title}}",
     "swagger_description": "{{cookiecutter.swagger_title}} endpoints",
     "health_message": "{{cookiecutter.project_name}} API HealthCheck",
-    "env_vars_namespace": "PROVU_{{ cookiecutter.project_name.upper().replace(' ', '_').replace('-', '_') }}",
-    "database": ["Postgres", "MySQL", "NoSQL"],
+    "env_vars_namespace": "{{ cookiecutter.project_name.upper().replace(' ', '_').replace('-', '_') }}",
+    "database": ["Postgres", "MySQL", "NoSQL", "Sqlite"],
     "create_clock": ["y", "n"],
     "create_celery_tasks": ["y", "n"]
   }

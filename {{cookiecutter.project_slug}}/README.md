@@ -65,8 +65,3 @@ A merge to dev or qa branchs will also build an image automatically on Jenkins a
 The tag must be changed manually on .env.yaml file before opening a PR to dev or qa branches.
 
 The version should be managed using the [SEMVER](https://semver.org/) scheme
-
-## Lendico standards applied
-
-* [Jenkins](https://lendicobr.atlassian.net/wiki/spaces/TI/pages/119439575/Padr+es+de+jobs+no+Jenkins)
-* [Docker](https://lendicobr.atlassian.net/wiki/spaces/TI/pages/35848362/Padr+es+para+containers+Docker)

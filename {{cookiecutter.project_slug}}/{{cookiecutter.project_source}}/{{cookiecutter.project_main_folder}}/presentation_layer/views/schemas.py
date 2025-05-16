@@ -1,5 +1,5 @@
 from uuid import UUID
-from flask_restplus import fields, Model
+from flask_restx import fields, Model
 
 
 class NullableString(fields.String):

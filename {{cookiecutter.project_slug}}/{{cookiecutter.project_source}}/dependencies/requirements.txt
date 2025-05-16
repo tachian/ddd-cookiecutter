@@ -1,34 +1,20 @@
---index-url https://nexus.lks.lendico.net.br/repository/lendico_python/simple
---extra-index-url https://pypi.org/simple
-
 aenum==3.0.0
 {% if cookiecutter.create_clock == 'y' -%}
 APScheduler==3.6.3 {%- endif %}
 {% if cookiecutter.create_celery_tasks == 'y' -%}
 celery[sqs]==5.0.3 {%- endif %}
-click-plugins==1.1.1
-cryptography==3.4.7
-emailage-official==1.2.0
-env-kills==0.3.2
-Flask==2.0.1
+Flask==2.3.2
 Flask-Cors==3.0.8
 Flask-HTTPAuth==3.3.0
 Flask-Login==0.4.1
 {% if cookiecutter.database|lower != 'nosql' -%}
 Flask-Migrate==2.7.0 {%- endif %}
-flask-restx==0.5.1
+flask-restx==1.0.3
 {% if cookiecutter.database|lower != 'nosql' -%}
-Flask-SQLAlchemy==2.5.1 {%- endif %}
-freezegun>=1.1.0
-gevent
-lendico-flask==4.2.10
+Flask-SQLAlchemy==3.0.2 {%- endif %}
 json-logging>=1.2.11
-newrelic
-py-money==0.4.0
-pycurl==7.43.0.5
-PyJWT==1.7.1
 python-dotenv==0.15.0
-openpyxl==3.0.4
+PyJWT==1.7.1
 {% if cookiecutter.database|lower == 'mysql' -%}
 MySQL-python==1.2.5
 {% elif cookiecutter.database|lower == 'postgres' -%}
